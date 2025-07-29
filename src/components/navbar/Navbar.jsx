@@ -1,7 +1,8 @@
 "use client"
 import Link from 'next/link'
 import React from 'react'
-
+import Styles from './navbar.module.css'
+import DarkModeToggle from '../DarkModeToggle/DarkModeToggle'
 const links = [
     { id: 1, title: 'Home', url: '/' },
     { id: 2, title: 'Portfolio', url: '/portfolio' },
@@ -13,15 +14,16 @@ const links = [
 
 const Navbar = () => {
     return (
-        <div>
-            <Link href="/">Hoome</Link>
-            <div>
+        <div className={Styles.container}>
+            <Link href="/" className={Styles.logo}>Home</Link>
+            <div className={Styles.links} >
+                <DarkModeToggle />
                 {links.map(link => (
-                    <Link key={link.id} href={link.url}>
+                    <Link key={link.id} href={link.url} className={Styles.link}>
                         {link.title}
                     </Link>
                 ))}
-                <button onClick={() => { console.log("Logout clicked"); }}>Logout</button>
+                <button className={Styles.logout} onClick={() => { console.log("Logout clicked"); }}>Logout</button>
             </div>
         </div>
     )
