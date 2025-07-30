@@ -4,8 +4,7 @@ import bcrypt from "bcryptjs";
 import User from "@/models/User";
 
 export const POST = async (request) => {
-    console.log("Register API called");
-    console.log("Request body:", request);
+
     const { name, email, password } = await request.json();
 
     await connect();
