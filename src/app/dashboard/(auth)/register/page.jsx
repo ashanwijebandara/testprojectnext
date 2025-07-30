@@ -5,6 +5,8 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 
 const Register = () => {
+    const [error, setError] = useState(null);
+    const router = useRouter();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -23,6 +25,7 @@ const Register = () => {
                     password,
                 }),
             });
+            console.log("Response:", res);
             res.status === 201 && router.push("/dashboard/login?success=Account has been created");
         } catch (err) {
             setError(err);

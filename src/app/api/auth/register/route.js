@@ -1,11 +1,12 @@
 import connect from "@/utils/db";
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
+import User from "@/models/User";
 
 export const POST = async (request) => {
     console.log("Register API called");
     console.log("Request body:", request);
-    const { name, email, password } = ["1", "2", "3"]//await request.json();
+    const { name, email, password } = await request.json();
 
     await connect();
     const hashedPassword = await bcrypt.hash(password, 5);

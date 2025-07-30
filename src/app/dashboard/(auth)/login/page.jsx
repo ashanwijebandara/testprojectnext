@@ -5,7 +5,7 @@ import { getProviders, signIn, useSession } from "next-auth/react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 
-const Login = ({ url }) => {
+const Login = async ({ url }) => {
     const session = useSession();
     const router = useRouter();
     const params = useSearchParams();
@@ -13,7 +13,7 @@ const Login = ({ url }) => {
     const [success, setSuccess] = useState("");
 
     useEffect(() => {
-        console.log("params:", params);
+        console.log("params:", session);
         setError(params.get("error"));
         setSuccess(params.get("success"));
     }, [params]);
@@ -23,6 +23,8 @@ const Login = ({ url }) => {
     }
 
     if (session.status === "authenticated") {
+        console.log("Router:", router);
+
         router?.push("/dashboard");
     }
 
